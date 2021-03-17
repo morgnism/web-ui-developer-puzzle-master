@@ -15,6 +15,7 @@ import { BookSearchInputComponent } from './book-search-input/book-search-input.
 import { BookResultsListComponent } from './book-results-list/book-results-list.component';
 import { TotalCountComponent } from './total-count/total-count.component';
 import { ReadingListComponent } from './reading-list/reading-list.component';
+import { ReadingListActionButtonComponent } from './reading-list-action-buttons/reading-list-action-buttons.component';
 
 const EXPORTS = [
   BookSearchComponent,
@@ -22,6 +23,7 @@ const EXPORTS = [
   BookResultsListComponent,
   TotalCountComponent,
   ReadingListComponent,
+  ReadingListActionButtonComponent,
 ];
 
 @NgModule({

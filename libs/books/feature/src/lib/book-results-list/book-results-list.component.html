@@ -24,7 +24,8 @@
               (click)="addBookToReadingList(book)"
               [disabled]="book.isAdded"
             >
-              Want to Read
+              <span *ngIf="!book.finished">Want to Read</span>
+              <span *ngIf="book.finished">Finished</span>
             </button>
           </div>
         </div>

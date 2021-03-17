@@ -1,13 +1,5 @@
 @import 'variables.scss';
 
-form {
-  margin-bottom: $spacing-xs;
-}
-
-.mat-form-field {
-  width: 100%;
-}
-
 .book-grid {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -68,5 +60,11 @@ form {
   justify-content: center;
   min-height: 50vh;
   font-size: 1.5rem;
-  color: $gray40;
+  color: $gray60;
+
+  button {
+    color: $pink-accent;
+    background: none;
+    border: none;
+  }
 }

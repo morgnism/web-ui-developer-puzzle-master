@@ -1,0 +1,44 @@
+<ng-container *ngIf="searchTerm; else empty">
+  <div class="book-grid">
+    <div class="book" data-testing="book-item" *ngFor="let book of books">
+      <div class="book--title">
+        {{ book.title }}
+      </div>
+      <div class="book--content">
+        <div class="book--content--cover">
+          <img src="{{ book.coverUrl }}" />
+        </div>
+        <div class="book--content--info">
+          <div>
+            <strong>Author:</strong> {{ book.authors | authors | unknown }}
+          </div>
+          <div><strong>Publisher:</strong> {{ book?.publisher | unknown }}</div>
+          <div>
+            <strong>Published:</strong> {{ book.publishedDate | formatDate }}
+          </div>
+          <p [innerHTML]="book.description"></p>
+          <div>
+            <button
+              mat-flat-button
+              color="primary"
+              (click)="addBookToReadingList(book)"
+              [disabled]="book.isAdded"
+            >
+              Want to Read
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #empty>
+  <div class="empty">
+    <p>
+      Try searching for a topic, for example "<button (click)="searchExample()">
+        JavaScript</button
+      >".
+    </p>
+  </div>
+</ng-template>

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedTestingModule } from '@tmo/shared/testing';
 
 import { TotalCountComponent } from './total-count.component';
@@ -8,11 +8,13 @@ describe('TotalCountComponent', () => {
   let component: TotalCountComponent;
   let fixture: ComponentFixture<TotalCountComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [BooksFeatureModule, SharedTestingModule]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [BooksFeatureModule, SharedTestingModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TotalCountComponent);

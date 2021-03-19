@@ -1,11 +1,8 @@
-<tmo-book-search-input
-  [searchForm]="searchForm"
-  (search)="searchBooks()"
-></tmo-book-search-input>
+<tmo-book-search-input (search)="searchBooks($event)"></tmo-book-search-input>
 
 <tmo-book-results-list
-  [searchTerm]="searchTerm$ | async"
+  [searchTerm]="searchTerm"
   [books]="books$ | async"
-  (search)="searchExample()"
+  (search)="searchBooks('javascript')"
   (addBook)="addBookToReadingList($event)"
 ></tmo-book-results-list>

@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 import { catchError, concatMap, exhaustMap, map } from 'rxjs/operators';
 import { ReadingListItem } from '@tmo/shared/models';
 import * as ReadingListActions from './reading-list.actions';
+import * as SnackBarActions from './snackbar.actions';
 
 @Injectable()
 export class ReadingListEffects implements OnInitEffects {
@@ -38,6 +39,22 @@ export class ReadingListEffects implements OnInitEffects {
     )
   );
 
+  addedToReadingList$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ReadingListActions.confirmedAddToReadingList),
+      map(({ book }) =>
+        SnackBarActions.snackbarConfirm({
+          config: {
+            message: `${book.title} added`,
+          },
+          onUndo: ReadingListActions.removeFromReadingList({
+            item: { ...book, bookId: book.id },
+          }),
+        })
+      )
+    )
+  );
+
   removeBook$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ReadingListActions.removeFromReadingList),
@@ -50,6 +67,22 @@ export class ReadingListEffects implements OnInitEffects {
             of(ReadingListActions.failedRemoveFromReadingList({ item }))
           )
         )
+      )
+    )
+  );
+
+  removedFromReadingList$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ReadingListActions.confirmedRemoveFromReadingList),
+      map(({ item }) =>
+        SnackBarActions.snackbarConfirm({
+          config: {
+            message: `${item.title} removed`,
+          },
+          onUndo: ReadingListActions.addToReadingList({
+            book: { ...item, id: item.bookId },
+          }),
+        })
       )
     )
   );

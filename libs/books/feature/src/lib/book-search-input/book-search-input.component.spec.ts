@@ -1,13 +1,13 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormControl, FormGroup } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedTestingModule } from '@tmo/shared/testing';
-
 import { BooksFeatureModule } from '../books-feature.module';
-import { BookSearchComponent } from './book-search.component';
+import { BookSearchInputComponent } from './book-search-input.component';
 
-describe('ProductsListComponent', () => {
-  let component: BookSearchComponent;
-  let fixture: ComponentFixture<BookSearchComponent>;
+describe('BookSearchInputComponent', () => {
+  let component: BookSearchInputComponent;
+  let fixture: ComponentFixture<BookSearchInputComponent>;
 
   beforeEach(
     waitForAsync(() => {
@@ -22,8 +22,11 @@ describe('ProductsListComponent', () => {
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BookSearchComponent);
+    fixture = TestBed.createComponent(BookSearchInputComponent);
     component = fixture.componentInstance;
+    component.searchForm = new FormGroup({
+      term: new FormControl(''),
+    });
     fixture.detectChanges();
   });
 

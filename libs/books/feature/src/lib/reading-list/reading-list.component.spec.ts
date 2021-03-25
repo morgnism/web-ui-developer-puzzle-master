@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedTestingModule } from '@tmo/shared/testing';
 
 import { ReadingListComponent } from './reading-list.component';
@@ -8,11 +8,13 @@ describe('ReadingListComponent', () => {
   let component: ReadingListComponent;
   let fixture: ComponentFixture<ReadingListComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [BooksFeatureModule, SharedTestingModule]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [BooksFeatureModule, SharedTestingModule],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ReadingListComponent);

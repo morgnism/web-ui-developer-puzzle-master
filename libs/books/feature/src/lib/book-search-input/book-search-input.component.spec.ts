@@ -17,7 +17,6 @@ describe('BookSearchInputComponent', () => {
           NoopAnimationsModule,
           SharedTestingModule,
         ],
-        declarations: [BookSearchInputComponent],
       }).compileComponents();
     })
   );

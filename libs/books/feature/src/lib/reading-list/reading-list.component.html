@@ -10,17 +10,18 @@
       <div class="reading-list-item--details--author">
         {{ book.authors | authors }}
       </div>
-    </div>
-    <div>
-      <button
-        mat-icon-button
-        color="warn"
-        [attr.aria-label]="'Remove ' + book.title + ' from reading list'"
-        (click)="removeFromReadingList(book)"
+      <div
+        *ngIf="book.finished"
+        class="reading-list-item--details--finished-date"
       >
-        <mat-icon>remove_circle</mat-icon>
-      </button>
+        Finished on: {{ book.finishedDate | formatDate }}
+      </div>
     </div>
+    <tmo-reading-list-action-buttons
+      [book]="book"
+      (updateBook)="updateBookFinishedStatus(book)"
+      (removeBook)="removeFromReadingList(book)"
+    ></tmo-reading-list-action-buttons>
   </div>
 </ng-container>
 

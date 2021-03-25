@@ -1,0 +1,37 @@
+<div class="reading-list-item--details--action-btns">
+  <ng-container
+    *ngIf="book.finished; then finishedBtn; else unfinishedBtn"
+  ></ng-container>
+  <ng-template #finishedBtn>
+    <button
+      mat-icon-button
+      color="accent"
+      data-testing="finished"
+      aria-label="Finished reading"
+      (click)="updateBook.emit(book)"
+    >
+      <mat-icon>done</mat-icon>
+    </button>
+  </ng-template>
+
+  <ng-template #unfinishedBtn>
+    <button
+      mat-icon-button
+      color="accent"
+      data-testing="unfinished"
+      aria-label="Continue reading"
+      (click)="updateBook.emit(book)"
+    >
+      <mat-icon>check_circle_outline</mat-icon>
+    </button>
+  </ng-template>
+  <button
+    mat-icon-button
+    color="warn"
+    data-testing="remove"
+    [attr.aria-label]="'Remove ' + book.title + ' from reading list'"
+    (click)="removeBook.emit(book)"
+  >
+    <mat-icon>remove_circle</mat-icon>
+  </button>
+</div>
